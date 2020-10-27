@@ -1,0 +1,31 @@
+body {
+    font-family: "Amiko";
+    /* background-color: #282A36; */
+}
+
+
+.inicio {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 4rem;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.black-title {
+    color: black;
+}
+
+.jack-title {
+    color: #b91d1d;
+}
+
+
+.cartas-inicio {
+    margin-top: 2rem;
+}
