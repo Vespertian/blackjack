@@ -1,6 +1,6 @@
 body {
     font-family: "Amiko";
-    /* background-color: #282A36; */
+    margin: 0 0 0 0;
 }
 
 
@@ -8,7 +8,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 1rem;
+    margin-top: 3rem;
 }
 
 .title {
@@ -17,15 +17,27 @@ body {
     white-space: nowrap;
 }
 
-.black-title {
-    color: black;
-}
-
-.jack-title {
-    color: #b91d1d;
-}
-
-
-.cartas-inicio {
+.seccion {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex: 1 100%;
+    background-color: #2E2459;
+}
+
+.titulo-seccion {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
+.seccion-texto {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: justify;
+    word-wrap: break-word;
 }
