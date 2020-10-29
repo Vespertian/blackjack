@@ -42,8 +42,9 @@ body {
     background-color: #0B7261;
     display: flex;
     align-items: center;
-    justify-content: center;
+
     flex-direction: column;
+    height: 100vh;
 }
 
 .juego h1 {
@@ -52,5 +53,30 @@ body {
 }
 
 .tablero {
-    height: 100%;
+    width: 90%;
+    height: 90vh;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 25% auto 25%;
+    grid-template-rows: 30% auto 30%;
+
+}
+
+.div1 {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.carta {
+    width: 15rem;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.div2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
