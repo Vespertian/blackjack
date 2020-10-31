@@ -39,7 +39,7 @@ body {
 }
 
 .juego {
-    background-color: #0B7261;
+    background-color: #fff;
     display: flex;
     align-items: center;
 
@@ -48,18 +48,19 @@ body {
 }
 
 .juego h1 {
-    color: #fff;
+    color: #D8DAD3;
     font-weight: bolder;
 }
 
 .tablero {
     width: 90%;
     height: 90vh;
-    background-color: aquamarine;
+    background-color: #0B7261;
     display: grid;
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: 30% 30% 5% 35%;
     border-radius: 0 0 40% 40%;
+    border: 1rem solid black;
 
 }
 
@@ -127,4 +128,13 @@ body {
     justify-content: center;
     grid-row-start: 3;
     grid-row-end: end-4;
+}
+
+.decoracio {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    grid-row-start: 2;
+    grid-row-end: 4;
 }
