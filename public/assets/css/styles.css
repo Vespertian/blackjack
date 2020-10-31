@@ -48,19 +48,20 @@ body {
 }
 
 .juego h1 {
-    color: #D8DAD3;
+    color: #fff;
     font-weight: bolder;
 }
 
 .tablero {
     width: 90%;
-    height: 90vh;
+    height: 80vh;
     background-color: #0B7261;
     display: grid;
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: 30% 30% 5% 35%;
     border-radius: 0 0 40% 40%;
     border: 1rem solid black;
+    border-top: none;
 
 }
 
@@ -137,4 +138,22 @@ body {
     justify-content: center;
     grid-row-start: 2;
     grid-row-end: 4;
+    opacity: 0.6;
+}
+
+.estado {
+    background-color: #fff;
+    border-radius: 30px;
+    height: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid #000;
+}
+
+.moneda {
+    width: 5rem;
+    height: auto;
 }
