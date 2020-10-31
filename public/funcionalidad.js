@@ -3,6 +3,8 @@ var app = new Vue({
     data: {
         inicio: true,
         jugar: false,
+        suma: 21,
+        apuesta: 2000
     },
     methods: {
         comenzarAJugar() {
