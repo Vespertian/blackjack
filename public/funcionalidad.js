@@ -10,6 +10,10 @@ var app = new Vue({
         comenzarAJugar() {
             this.inicio = false;
             this.jugar = true;
+        },
+        salirseDelJuego() {
+            this.inicio = true;
+            this.jugar = false;
         }
     }
 

@@ -102,12 +102,22 @@
           <div class="div12"></div>
         </div>
         <div class="estado">
-          <img src="assets/svg/moneda1000.svg" class="moneda" />
-          <img src="assets/svg/moneda2000.svg" class="moneda" />
-          <img src="assets/svg/moneda5000.svg" class="moneda" />
-          <p>Suma: {{suma}}</p>
-          <p>Apuesta: {{apuesta}}</p>
-          <p>Ganancia: 5000</p>
+          <div class="datosApuesta">
+            <div class="divModenas">
+              <button class="monedas-btn"><img src="assets/svg/moneda1000.svg" class="moneda" /></button>
+              <button class="monedas-btn"><img src="assets/svg/moneda2000.svg" class="moneda" /></button>
+              <button class="monedas-btn"><img src="assets/svg/moneda5000.svg" class="moneda" /></button>
+            </div>
+              <p>Suma: {{suma}}</p>
+              <p>Apuesta: {{apuesta}}</p>
+              <p>Ganancia: 5000</p>
+        </div>
+        <div class="botones">
+          <button class="pedir-btn">Pedir</button>
+          <button class="plantarse-btn">Plantarse</button>
+          <button class="salir-btn" @click="salirseDelJuego">Salir</button>
+        </div>
+          </div>
         </div>
       </div>
     </div>
