@@ -14,10 +14,9 @@ var app = new Vue({
             this.inicio = false;
             this.jugar = true;
 
-            this.datosJuego = await fetch('http://172.105.20.118:8080/join')
-
-            console.log(err);
-
+            let respuesta = await fetch('http://172.105.20.118:8080/join')
+            this.datosJuego = await respuesta.json();
+            
         },
         salirseDelJuego() {
             this.inicio = true;
@@ -31,6 +30,9 @@ var app = new Vue({
         },
         apostar5000() {
             this.apuesta += 5000;
+        },
+        salir(){
+            
         },
     }
 
