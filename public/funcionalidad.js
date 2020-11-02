@@ -42,6 +42,9 @@ var app = new Vue({
         apostar5000() {
             this.apuesta += 5000;
         },
+        salir() {
+
+        },
     }
 
 });
