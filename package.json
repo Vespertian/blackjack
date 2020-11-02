@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/M4rteaga/blackjack#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",

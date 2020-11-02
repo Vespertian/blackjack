@@ -6,7 +6,12 @@ var app = new Vue({
         suma: 0,
         apuesta: 0,
         ganancia: 0,
-        datosJuego: ''
+        datosJuego: {
+            cartas: [],
+            estado: '',
+            segundos: 0,
+            turno: 0
+        }
     },
     methods: {
         async comenzarAJugar() {
@@ -14,9 +19,14 @@ var app = new Vue({
             this.inicio = false;
             this.jugar = true;
 
-            this.datosJuego = await fetch('http://172.105.20.118:8080/join')
+            let response = await axios.get('/join')
 
-            console.log(err);
+            this.datosJuego.cartas = await response.data.Cartas
+            this.datosJuego.estado = await response.data.Estado
+            this.datosJuego.segundos = await response.data.Segundos
+            this.datosJuego.turno = await response.data.Turno
+
+            console.log(await response.data.Estado);
 
         },
         salirseDelJuego() {
