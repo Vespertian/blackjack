@@ -114,20 +114,21 @@
         <div class="estado">
           <div class="datosApuesta">
             <div class="divModenas">
-              <button class="monedas-btn"  @click="apostar1000"><img src="assets/svg/moneda1000.svg" class="moneda" /></button>
-              <button class="monedas-btn"  @click="apostar2000"><img src="assets/svg/moneda2000.svg" class="moneda" /></button>
-              <button class="monedas-btn"  @click="apostar5000"><img src="assets/svg/moneda5000.svg" class="moneda" /></button>
+              <button class="monedas-btn"  @click=""><img src="assets/svg/moneda1000.svg" class="moneda" /></button>
+              <button class="monedas-btn"  @click=""><img src="assets/svg/moneda2000.svg" class="moneda" /></button>
+              <button class="monedas-btn"  @click=""><img src="assets/svg/moneda5000.svg" class="moneda" /></button>
             </div>
-              <p>Suma: {{suma}}</p>
-              <p>Apuesta: {{apuesta}}</p>
-              <p>Ganancia: {{ganancia}}</p>
+              <p>Suma: {{calcSuma}}</p>
               <p>Estado: {{datosJuego.estado}}</p>
               <p id="tiempo">Segundos: {{datosJuego.segundos}}</p>
+              <p>Turno: {{datosJuego.turno}}</p>
+              <p>Puesto: {{puesto}}</p>
         </div>
         <div class="botones">
           <button class="pedir-btn" @click="hit">Pedir</button>
           <button class="plantarse-btn">Plantarse</button>
           <button class="salir-btn" @click="salirseDelJuego">Salir</button>
+          <button class="salir-btn" @click="update">update</button>
         </div>
           </div>
         </div>
