@@ -4,7 +4,7 @@ var app = new Vue({
         inicio: true,
         jugar: false,
         botonInicio: true,
-        puesto: 1,
+        puesto: null,
         suma: 0,
         apuesta: 0,
         ganancia: 0,
@@ -23,7 +23,18 @@ var app = new Vue({
             this.inicio = false;
             this.jugar = true;
             let response = await axios.get('/join')
-
+            console.log("OBJETO: "+await response.data.Estado)
+            this.update()
+            this.updatePuesto()
+        },
+        async updatePuesto(){
+            if (this.datosJuego.estado=='Disponible' || this.datosJuego.estado=='Recibiendo') {
+                let response = await axios.get('/puesto')
+                this.puesto = await response.data.Puesto
+                console.log("PUESTO UPDATED: "+this.puesto)
+            }else{
+                console.log("La partida ya inició")
+            }
         },
         async continuarJugando(){
             this.inicio = false;
@@ -32,6 +43,7 @@ var app = new Vue({
         async salirseDelJuego() {
             this.inicio = true;
             this.jugar = false;
+            let response = await axios.get('/leave')
         },
         async hit() {
             let response = await axios.get('/hit')
@@ -47,10 +59,10 @@ var app = new Vue({
             this.datosJuego.estado = await response.data.Estado
             this.datosJuego.segundos = await response.data.Segundos
             this.datosJuego.turno = await response.data.Turno
-            console.log(await response.data)
-            response = await axios.get('/puesto')
-            this.puesto = await response.data.Puesto
-            console.log(await response.data)
+            console.log("Segundos: "+this.datosJuego.segundos)
+            //response = await axios.get('/puesto')
+            //this.puesto = await response.data.Puesto
+            // console.log(await response.data)
         }
     },
     asyncComputed: {
@@ -88,11 +100,6 @@ var app = new Vue({
             }
             return await this.datosJuego.cartas[this.puesto]
         },
-        async verPuesto(){
-            let response = await axios.get('/puesto')
-            this.puesto = await response.data.Puesto
-        }
-
     }
 
 });

@@ -48,6 +48,22 @@ app.get('/join', (req, res) => {
     })
 })
 
+app.get('/puesto', (req, res) => {
+    request({
+        url: 'http://172.105.20.118:8080/puesto'
+    }, (err, response, body) => {
+        if (err || response.statusCode !== 200) {
+            return res.status(500).json({
+                type: 'error',
+                message: err.message
+            });
+        }
+
+        res.json(JSON.parse(body));
+        console.log('puesto'+body);
+    })
+})
+
 app.get('/leave', (req, res) => {
     request({
         url: 'http://172.105.20.118:8080/leave'
@@ -61,21 +77,6 @@ app.get('/leave', (req, res) => {
 
         res.json(JSON.parse(body));
         console.log('leave');
-    })
-})
-
-app.get('/puesto', (req, res) => {
-    request({
-        url: 'http://172.105.20.118:8080/puesto'
-    }, (err, response, body) => {
-        if (err || response.statusCode !== 200) {
-            return res.status(500).json({
-                type: 'error',
-                message: err.message
-            });
-        }
-
-        res.json(JSON.parse(body));
     })
 })
 
