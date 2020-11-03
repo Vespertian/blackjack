@@ -39,7 +39,7 @@
             style="width: 100%; height: auto"
           />
         </div>
-        <button v-on:click="comenzarAJugar" :disabled="botonInicio">Comenzar a jugar</button>
+        <button v-on:click="comenzarAJugar" :disabled="!botonInicio">Comenzar a jugar</button>
       </div>
 
       <div class="juego" v-show="jugar">
@@ -102,9 +102,12 @@
           </div>
           <div class="div10"></div>
           <div class="div11">
-            <img src="assets/svg/Corazon/AsCorazon.svg" class="carta" />
+            <li v-for='carta in datosJuego.cartas[puesto]'>
+              {{carta}}
+            </li>
+            <!-- <img src="assets/svg/Corazon/AsCorazon.svg" class="carta" />
             <img src="assets/svg/Trebol/7Trebol.svg" class="carta" />
-            <img src="assets/svg/Trebol/KTrebol.svg" class="carta" />
+            <img src="assets/svg/Trebol/KTrebol.svg" class="carta" /> -->
           </div>
           <div class="div12"></div>
         </div>
@@ -118,9 +121,11 @@
               <p>Suma: {{suma}}</p>
               <p>Apuesta: {{apuesta}}</p>
               <p>Ganancia: {{ganancia}}</p>
+              <p>Estado: {{datosJuego.estado}}</p>
+              <p id="tiempo">Segundos: {{datosJuego.segundos}}</p>
         </div>
         <div class="botones">
-          <button class="pedir-btn">Pedir</button>
+          <button class="pedir-btn" @click="hit">Pedir</button>
           <button class="plantarse-btn">Plantarse</button>
           <button class="salir-btn" @click="salirseDelJuego">Salir</button>
         </div>

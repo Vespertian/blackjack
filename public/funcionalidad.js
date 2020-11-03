@@ -4,6 +4,7 @@ var app = new Vue({
         inicio: true,
         jugar: false,
         botonInicio: true,
+        puesto: 0,
         suma: 0,
         apuesta: 0,
         ganancia: 0,
@@ -16,31 +17,40 @@ var app = new Vue({
     },
     methods: {
         async comenzarAJugar() {
+            this.inicio = false;
+            this.jugar = true;
 
-            // let response = await axios.get('/')
-            // this.datosJuego.estado = await response.data.Estado
-            // this.datosJuego.segundos = await response.data.Segundos
-            // this.datosJuego.turno = await response.data.Turno
+            let response = await axios.get('/join')
 
-            if (true) {
-                this.inicio = false;
-                this.jugar = true;
-    
-                let response = await axios.get('/join')
-    
-                this.datosJuego.cartas = await response.data.Cartas
-                this.datosJuego.estado = await response.data.Estado
-                this.datosJuego.segundos = await response.data.Segundos
-                this.datosJuego.turno = await response.data.Turno
-    
-                console.log(await response.data.Estado);
-            }else{
-                console.log('Partida no disponible, turno: '+this.datosJuego.turno+", segundo: "+this.datosJuego.segundos)
-            }
+            this.datosJuego.cartas = await response.data.Cartas
+            this.datosJuego.estado = await response.data.Estado
+            this.datosJuego.segundos = await response.data.Segundos
+            this.datosJuego.turno = await response.data.Turno
+            this.puesto = await axios.get('/puesto').Puesto
+            console.log(this.puesto)
+
         },
-        salirseDelJuego() {
+        async verTiempo(){
+            let response = await axios.get('/estado')
+            this.datosJuego.segundos = await response.data.Segundos
+        },
+        async salirseDelJuego() {
             this.inicio = true;
             this.jugar = false;
+
+            let response = await axios.get('/leave')
+            this.datosJuego.cartas = await response.data.Cartas
+            this.datosJuego.estado = await response.data.Estado
+            this.datosJuego.segundos = await response.data.Segundos
+            this.datosJuego.turno = await response.data.Turno
+        },
+        async hit() {
+            let response = await axios.get('/hit')
+            this.datosJuego.cartas = await response.data.Cartas
+            this.datosJuego.estado = await response.data.Estado
+            this.datosJuego.segundos = await response.data.Segundos
+            this.datosJuego.turno = await response.data.Turno
+            
         },
         apostar1000() {
             this.apuesta += 1000;
@@ -56,11 +66,13 @@ var app = new Vue({
         async verEstado() {
             let response = await axios.get('/estado')
             if (await response.data.Estado=='Disponible' || await response.data.Estado=='Recibiendo') {
-               this.botonInicio=false 
+               //this.botonInicio=false 
             }
             console.log(response)
             return await response.data.Estado
-        }
+        }, 
+
     }
 
 });
+
