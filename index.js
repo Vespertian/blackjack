@@ -27,9 +27,7 @@ app.get('/estado', (req, res) => {
                 message: err.message
             });
         }
-        
         res.json(JSON.parse(body));
-        console.log(body);
     })
 });
 
@@ -46,7 +44,7 @@ app.get('/join', (req, res) => {
         }
 
         res.json(JSON.parse(body));
-        console.log(body);
+        console.log('join');
     })
 })
 
@@ -62,7 +60,7 @@ app.get('/leave', (req, res) => {
         }
 
         res.json(JSON.parse(body));
-        console.log(body);
+        console.log('leave');
     })
 })
 
@@ -78,7 +76,6 @@ app.get('/puesto', (req, res) => {
         }
 
         res.json(JSON.parse(body));
-        console.log(body);
     })
 })
 
@@ -94,7 +91,7 @@ app.get('/hit', (req, res) => {
         }
 
         res.json(JSON.parse(body));
-        console.log(body);
+        console.log('hit');
     })
 })
 

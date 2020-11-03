@@ -15,37 +15,31 @@ var app = new Vue({
             turno: 0
         }
     },
+    mounted() {
+        this.autoUpdate();
+    },
     methods: {
         async comenzarAJugar() {
             this.inicio = false;
             this.jugar = true;
-
             let response = await axios.get('/join')
 
-            this.datosJuego.cartas = await response.data.Cartas
-            this.datosJuego.estado = await response.data.Estado
-            this.datosJuego.segundos = await response.data.Segundos
-            this.datosJuego.turno = await response.data.Turno
-
-            response = await axios.get('/puesto')
-            this.puesto = await response.data.Puesto
-            console.log(this.puesto)
-
         },
-        async verTiempo(){
-            let response = await axios.get('/estado')
-            this.datosJuego.segundos = await response.data.Segundos
+        async continuarJugando(){
+            this.inicio = false;
+            this.jugar = true;
         },
         async salirseDelJuego() {
             this.inicio = true;
             this.jugar = false;
-
-            let response = await axios.get('/leave')
-            this.datosJuego.estado = await response.data.Estado
         },
         async hit() {
             let response = await axios.get('/hit')
-            this.datosJuego.cartas = await response.data.Cartas
+        },
+        autoUpdate: async function(){
+            setInterval(() => {
+                this.update()
+            }, 1000);
         },
         async update() {
             let response = await axios.get('/estado')
@@ -53,8 +47,10 @@ var app = new Vue({
             this.datosJuego.estado = await response.data.Estado
             this.datosJuego.segundos = await response.data.Segundos
             this.datosJuego.turno = await response.data.Turno
-            
-            this.$forceUpdate()
+            console.log(await response.data)
+            response = await axios.get('/puesto')
+            this.puesto = await response.data.Puesto
+            console.log(await response.data)
         }
     },
     asyncComputed: {
@@ -64,8 +60,6 @@ var app = new Vue({
                //this.botonInicio=false 
             }
             this.datosJuego.estado = await response.data.Estado
-
-            console.log(response)
             return await this.datosJuego.estado
         }, 
         async calcSuma(){
@@ -83,6 +77,20 @@ var app = new Vue({
             }
             
             return await this.suma
+        },
+        async verCartas(){
+            let response = await axios.get('/estado')
+            this.datosJuego.estado = await response.data.Estado
+            if (await response.data.Estado=='Disponible'||await response.data.Estado=='Recibiendo') {
+                this.datosJuego.cartas = {'Valor':'','Tipo':''}
+            }else{
+                this.datosJuego.cartas = await response.data.Cartas
+            }
+            return await this.datosJuego.cartas[this.puesto]
+        },
+        async verPuesto(){
+            let response = await axios.get('/puesto')
+            this.puesto = await response.data.Puesto
         }
 
     }

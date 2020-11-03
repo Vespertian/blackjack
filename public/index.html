@@ -17,7 +17,7 @@
     <div id="app">
       <div class="inicio" v-show="inicio">
         <div>
-          <h1>{{verEstado}}</h1>
+          <h1>{{datosJuego.estado}}</h1>
         </div>
         <svg width="450" height="100">
           <path
@@ -40,6 +40,7 @@
           />
         </div>
         <button v-on:click="comenzarAJugar" :disabled="!botonInicio">Comenzar a jugar</button>
+        <button v-on:click="continuarJugando">Continuar jugando</button>
       </div>
 
       <div class="juego" v-show="jugar">
@@ -102,7 +103,7 @@
           </div>
           <div class="div10"></div>
           <div class="div11">
-            <li v-for='carta in datosJuego.cartas[puesto]'>
+            <li v-for='carta in verCartas'>
               {{carta}}
             </li>
             <!-- <img src="assets/svg/Corazon/AsCorazon.svg" class="carta" />
@@ -128,7 +129,6 @@
           <button class="pedir-btn" @click="hit">Pedir</button>
           <button class="plantarse-btn">Plantarse</button>
           <button class="salir-btn" @click="salirseDelJuego">Salir</button>
-          <button class="salir-btn" @click="update">update</button>
         </div>
           </div>
         </div>
