@@ -1,16 +1,11 @@
 import express from 'express';
 import request from 'request';
 
-
 const app = express();
 
 const port = 8000;
 
 app.use(express.static(__dirname + '/public'))
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-});
 
 //proxy para  que cors no moleste
 app.use((req, res, next) => {
@@ -18,8 +13,29 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/estado', (req, res) => {
+    request({
+        url: 'http://172.105.20.118:8080'
+    }, (err, response, body) => {
+        if (err || response.statusCode !== 200) {
+            return res.status(500).json({
+                type: 'error',
+                message: err.message
+            });
+        }
+        
+        res.json(JSON.parse(body));
+        console.log(body);
+    })
+});
+
 //proxy para cuando se une al juego 
 app.get('/join', (req, res) => {
+    console.log('------------------ join -------------------')
     request({
         url: 'http://172.105.20.118:8080/join'
     }, (err, response, body) => {

@@ -3,6 +3,7 @@ var app = new Vue({
     data: {
         inicio: true,
         jugar: false,
+        botonInicio: true,
         suma: 0,
         apuesta: 0,
         ganancia: 0,
@@ -16,18 +17,26 @@ var app = new Vue({
     methods: {
         async comenzarAJugar() {
 
-            this.inicio = false;
-            this.jugar = true;
+            // let response = await axios.get('/')
+            // this.datosJuego.estado = await response.data.Estado
+            // this.datosJuego.segundos = await response.data.Segundos
+            // this.datosJuego.turno = await response.data.Turno
 
-            let response = await axios.get('/join')
-
-            this.datosJuego.cartas = await response.data.Cartas
-            this.datosJuego.estado = await response.data.Estado
-            this.datosJuego.segundos = await response.data.Segundos
-            this.datosJuego.turno = await response.data.Turno
-
-            console.log(await response.data.Estado);
-
+            if (true) {
+                this.inicio = false;
+                this.jugar = true;
+    
+                let response = await axios.get('/join')
+    
+                this.datosJuego.cartas = await response.data.Cartas
+                this.datosJuego.estado = await response.data.Estado
+                this.datosJuego.segundos = await response.data.Segundos
+                this.datosJuego.turno = await response.data.Turno
+    
+                console.log(await response.data.Estado);
+            }else{
+                console.log('Partida no disponible, turno: '+this.datosJuego.turno+", segundo: "+this.datosJuego.segundos)
+            }
         },
         salirseDelJuego() {
             this.inicio = true;
@@ -42,9 +51,16 @@ var app = new Vue({
         apostar5000() {
             this.apuesta += 5000;
         },
-        salir() {
-
-        },
+    },
+    asyncComputed: {
+        async verEstado() {
+            let response = await axios.get('/estado')
+            if (await response.data.Estado=='Disponible' || await response.data.Estado=='Recibiendo') {
+               this.botonInicio=false 
+            }
+            console.log(response)
+            return await response.data.Estado
+        }
     }
 
 });

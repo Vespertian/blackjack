@@ -10,11 +10,15 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
     <!-- para poder usar axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-async-computed@3.9.0"></script>
   </head>
 
   <body>
     <div id="app">
       <div class="inicio" v-show="inicio">
+        <div>
+          <h1>{{verEstado}}</h1>
+        </div>
         <svg width="450" height="100">
           <path
             id="curve"
@@ -35,8 +39,9 @@
             style="width: 100%; height: auto"
           />
         </div>
-        <button v-on:click="comenzarAJugar">Comenzar a jugar</button>
+        <button v-on:click="comenzarAJugar" :disabled="botonInicio">Comenzar a jugar</button>
       </div>
+
       <div class="juego" v-show="jugar">
         <div class="tablero">
           <div class="div1">
