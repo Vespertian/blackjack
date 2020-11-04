@@ -27,6 +27,7 @@ var app = new Vue({
         async comenzarAJugar() {
             this.inicio = false;
             this.jugar = true;
+            console.log("COMENZAR A JUGAR")
             // let response = await axios.get('/join')
             let response = await fetch('http://172.105.20.118:8080/join')
             this.datosJuego = await response.json()
@@ -43,17 +44,23 @@ var app = new Vue({
             this.jugar = true;
         },
         async salirseDelJuego() {
-            // let response = await fetch('http://172.105.20.118:8080/leave')
+            //let response = await fetch('http://172.105.20.118:8080/leave')
             // this.datosJuego = await response.json()
-            // this.inicio = true;
-            // this.jugar = false;
+            this.inicio = true;
+            this.jugar = false;
             // this.suma=0
             // this.cartasSumadas=0
             // this.totCartas=2
             
         },
         async hit() {
-            let response = await axios.get('/hit')
+            console.log("ENTRO AL HIT")
+            // if (this.datosJuego.Turno==this.puesto.Puesto) {
+            //     console.log("HIT------------->Hecho")
+            //     // let response = await axios.get('/hit')
+            //     let response = await fetch('http://172.105.20.118:8080/hit')
+            //     this.totCartas++
+            // }
         },
         autoUpdate: async function(){
             setInterval(() => {
@@ -69,24 +76,23 @@ var app = new Vue({
             //this.calcSuma()
         },
         calcSuma(){
-            if (this.puesto>=0) {
-                for(i in this.datosJuego.Cartas[this.puesto.Puesto]){
-                    let naipe=this.datosJuego.Cartas[this.puesto.Puesto][i]
-                    valor=naipe.Valor
-                    if(valor=='J'||valor=='Q'||valor=='K'){
-                        valor=10
-                    }else if(valor=='A'){
-                        valor=11
-                    }
-                    console.log(valor+" "+i)
-                    if (this.cartasSumadas<this.totCartas) {
-                        console.log('Cartas Sumadas: '+this.cartasSumadas)
-                        console.log('totCartas: '+this.totCartas)
-                        this.suma=this.suma+parseInt(valor)
-                        this.cartasSumadas++
-                    }
-                }
-            }
+            // if (this.puesto.Puesto>=0 && this.datosJuego.Cartas!==null) {
+            //     while (this.cartasSumadas<this.totCartas) {
+            //         let naipe=this.datosJuego.Cartas[this.puesto.Puesto][this.cartasSumadas]
+            //         valor=naipe.Valor
+            //         if(valor=='J'||valor=='Q'||valor=='K'){
+            //             valor=10
+            //         }else if(valor=='A'){
+            //             valor=11
+            //         }
+            //         console.log(valor+" "+this.cartasSumadas)
+            //         if (this.cartasSumadas<this.totCartas) {
+            //             console.log("SUma: "+this.suma)
+            //             this.suma=this.suma+parseInt(valor)
+            //             this.cartasSumadas++
+            //         }
+            //     }
+            // }
         },
     },
     computed: {
