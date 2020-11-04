@@ -27,6 +27,8 @@
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "flightplan": "^0.6.20",
+    "fly": "^4.1.4"
   }
 }
