@@ -17,7 +17,7 @@
     <div id="app">
       <div class="inicio" v-show="inicio">
         <div>
-          <h1>{{datosJuego.estado}}</h1>
+          <h1>{{datosJuego.Estado}}</h1>
         </div>
         <svg width="450" height="100">
           <path
@@ -119,11 +119,11 @@
               <button class="monedas-btn"  @click=""><img src="assets/svg/moneda2000.svg" class="moneda" /></button>
               <button class="monedas-btn"  @click=""><img src="assets/svg/moneda5000.svg" class="moneda" /></button>
             </div>
-              <p>Suma: {{calcSuma}}</p>
-              <p>Estado: {{datosJuego.estado}}</p>
-              <p id="tiempo">Segundos: {{datosJuego.segundos}}</p>
-              <p>Turno: {{datosJuego.turno}}</p>
-              <p>Puesto: {{puesto}}</p>
+              <p>Suma: {{suma}}</p>
+              <p>Estado: {{datosJuego.Estado}}</p>
+              <p id="tiempo">Segundos: {{datosJuego.Segundos}}</p>
+              <p>Turno: {{datosJuego.Turno}}</p>
+              <p>Puesto: {{puesto.Puesto}}</p>
         </div>
         <div class="botones">
           <button class="pedir-btn" @click="hit">Pedir</button>
