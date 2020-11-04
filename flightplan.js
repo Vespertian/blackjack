@@ -58,7 +58,7 @@ plan.remote(function (remote) {
     { user: username }
   );
   remote.sudo(
-    "docker stop casino_container && docker rm casino_container && docker run --name casino_container --restart=always -d -p 80:3000 casino:" +
+    "docker stop casino_container && docker rm casino_container && docker run --name casino_container --restart=always -d -p 80:8000 casino:" +
       version,
     { user: username }
   );
